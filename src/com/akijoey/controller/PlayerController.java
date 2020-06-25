@@ -28,7 +28,7 @@ public class PlayerController {
     }
 
     public static void move(int x, int y) {
-        map[player.getFloor()][y][x] = 0;
+        map[player.getFloor()][y][x] = 1000;
         player.setX(x);
         player.setY(y);
         frame.repaint();
@@ -57,13 +57,13 @@ public class PlayerController {
     }
 
     private static boolean interaction(int id) {
-        if (id >= 0 && id < 12) {
+        if (id >= 1000 && id < 1100) {
             return BlockController.interaction(id);
-        } else if (id >= 12 && id < 40) {
+        } else if (id >= 1100 && id < 1200) {
             return ItemController.interaction(id);
-        } else if (id >= 40 && id < 50) {
+        } else if (id >= 1200 && id < 1300) {
             return NpcController.interaction(id);
-        } else if (id >= 50 && id < 110) {
+        } else if (id >= 1300) {
             return MonsterController.interaction(id);
         }
         return false;

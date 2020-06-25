@@ -19,7 +19,9 @@ public class ContentPane extends JPanel {
 
     public static BattlePane battlePane = new BattlePane();
     public static ForecastPane forecastPane = new ForecastPane();
+    public static JumpPane jumpPane = new JumpPane();
     public static MessagePane messagePane = new MessagePane();
+    public static DialogPane dialogPane = new DialogPane();
 
     public ContentPane() {
         setLayout(null);
@@ -27,7 +29,9 @@ public class ContentPane extends JPanel {
 
         add(battlePane);
         add(forecastPane);
+        add(jumpPane);
         add(messagePane);
+        add(dialogPane);
 
         new Timer(500, new ActionListener() {
             private boolean state = true;

@@ -13,6 +13,7 @@ public class Player extends Block {
     private int defend;
 
     private int floor;
+    private int limit;
     private String direction;
 
     private Item item;
@@ -25,6 +26,7 @@ public class Player extends Block {
 ////        attack = 10;
 ////        defend = 10;
 ////        floor = 0;
+////        limit = 0;
 ////        direction = "down";
 ////        item = Item.getInstance();
 ////        setX(5);
@@ -38,6 +40,7 @@ public class Player extends Block {
         attack = 10000;
         defend = 10000;
         floor = 0;
+        limit = 20;
         direction = "down";
         item = Item.getInstance();
         setX(5);
@@ -102,6 +105,14 @@ public class Player extends Block {
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 
     public String getDirection() {

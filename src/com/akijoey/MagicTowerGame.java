@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import static com.akijoey.controller.PlayerController.turn;
 import static com.akijoey.view.ContentPane.forecastPane;
 
+import static com.akijoey.view.ContentPane.jumpPane;
 import static java.awt.event.KeyEvent.*;
 import static java.awt.event.KeyEvent.VK_UP;
 
@@ -37,6 +38,9 @@ public class MagicTowerGame {
                             break;
                         case VK_L:
                             forecastPane.display();
+                            break;
+                        case VK_J:
+                            jumpPane.display();
                             break;
                     }
                 }

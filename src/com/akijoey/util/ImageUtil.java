@@ -16,21 +16,28 @@ public class ImageUtil {
     public static BufferedImage blank = readBackground("blank");
 
     static {
-        for (int i = 0;i < 118;i++) {
-            from.put(i, readImage("/keyframe/from/" + i));
-            to.put(i, readImage("/keyframe/to/" + i));
+        BufferedImage image;
+        for (int i = 1000;i < 2000;i++) {
+            if ((image = readImage("/keyframe/from/" + i)) != null) {
+                from.put(i, image);
+            }
+            if ((image = readImage("/keyframe/to/" + i)) != null) {
+                to.put(i, image);
+            }
         }
     }
 
     public static BufferedImage readImage(String relative) {
         String absolute = System.getProperty("user.dir") + "/res/image" + relative + ".png";
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(new File(absolute));
-        } catch (IOException e) {
-            e.printStackTrace();
+        File image = new File(absolute);
+        if (image.exists()) {
+            try {
+                return ImageIO.read(image);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        return image;
+        return null;
     }
 
     public static BufferedImage readBackground(String name) {

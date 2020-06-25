@@ -10,29 +10,29 @@ import static com.akijoey.util.ConfigUtil.last;
 public class BlockController {
 
     public static boolean interaction(int id) {
-        if (id == 0 || id == 7) {   // pass 7
+        if (id == 1000 || id == 1030) {
             return true;
-        } else if (id > 2 && id < 7) {
-            return openDoor(id);
-        } else if (id == 8 || id == 9) {
+        } else if (id >= 1040 && id < 1050) {
             climbStair(id);
             return false;
+        } else if (id >= 1050 && id < 1100) {
+            return openDoor(id);
         }
         return false;
     }
 
     private static boolean openDoor(int id) {
         Item item = player.getItem();
-        if (id == 3 && item.getYellowKey() > 0) {
+        if (id == 1050 && item.getYellowKey() > 0) {
             item.setYellowKey(item.getYellowKey() - 1);
             return true;
-        } else if (id == 4 && item.getBlueKey() > 0) {
+        } else if (id == 1051 && item.getBlueKey() > 0) {
             item.setBlueBottle(item.getBlueKey() - 1);
             return true;
-        } else if (id == 5 && item.getRedKey() > 0) {
+        } else if (id == 1052 && item.getRedKey() > 0) {
             item.setRedKey(item.getRedKey() - 1);
             return true;
-        } else if (id == 6 && item.getGreenKey() > 0) {
+        } else if (id == 1053 && item.getGreenKey() > 0) {
             item.setGreenKey(item.getGreenKey() - 1);
             return true;
         }
@@ -41,10 +41,14 @@ public class BlockController {
 
     private static void climbStair(int id) {
         int floor = player.getFloor();
-        if (id == 8) {
+        player.setDirection("down");
+        if (id == 1040) {
             player.setFloor(++floor);
             move(first[floor][0], first[floor][1]);
-        } else {
+            if (floor > player.getLimit()) {    // update floor limit for jump
+                player.setLimit(floor);
+            }
+        } else if (id == 1041) {
             player.setFloor(--floor);
             move(last[floor][0], last[floor][1]);
         }
