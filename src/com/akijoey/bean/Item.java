@@ -21,6 +21,16 @@ public class Item {
     private int goldPack = 0;
     private int experiencePack = 0;
 
+    private boolean cross = false;      // 仙女的十字架
+    private boolean badge = false;      // 神圣的徽章: 获取该层怪物信息
+    private boolean kettle = false;     // 神圣的水壶: 可增加一倍生命值
+    private boolean compass = false;    // 神圣的罗盘: 随意传送至各楼层
+    private boolean pickaxe = false;    // 神圣的镐子: 可以破坏隐藏墙壁
+
+    private boolean flameWand = false;      // 火焰杖
+    private boolean frozenWand = false;     // 冰冻杖
+    private boolean thunderWand = false;    // 雷电杖
+
     private Item() {}
 
     public static Item getInstance() {
@@ -129,5 +139,69 @@ public class Item {
 
     public void setExperiencePack(int experiencePack) {
         this.experiencePack = experiencePack;
+    }
+
+    public boolean isCross() {
+        return cross;
+    }
+
+    public void setCross(boolean cross) {
+        this.cross = cross;
+    }
+
+    public boolean isBadge() {
+        return badge;
+    }
+
+    public void setBadge(boolean badge) {
+        this.badge = badge;
+    }
+
+    public boolean isKettle() {
+        return kettle;
+    }
+
+    public void setKettle(boolean kettle) {
+        this.kettle = kettle;
+    }
+
+    public boolean isCompass() {
+        return compass;
+    }
+
+    public void setCompass(boolean compass) {
+        this.compass = compass;
+    }
+
+    public boolean isPickaxe() {
+        return pickaxe;
+    }
+
+    public void setPickaxe(boolean pickaxe) {
+        this.pickaxe = pickaxe;
+    }
+
+    public boolean isFlameWand() {
+        return flameWand;
+    }
+
+    public void setFlameWand(boolean flameWand) {
+        this.flameWand = flameWand;
+    }
+
+    public boolean isFrozenWand() {
+        return frozenWand;
+    }
+
+    public void setFrozenWand(boolean frozenWand) {
+        this.frozenWand = frozenWand;
+    }
+
+    public boolean isThunderWand() {
+        return thunderWand;
+    }
+
+    public void setThunderWand(boolean thunderWand) {
+        this.thunderWand = thunderWand;
     }
 }

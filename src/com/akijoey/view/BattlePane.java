@@ -10,7 +10,6 @@ import java.awt.*;
 
 import static com.akijoey.MagicTowerGame.keyEnable;
 import static com.akijoey.controller.PlayerController.player;
-import static com.akijoey.view.ContentPane.messagePane;
 
 public class BattlePane extends JLayeredPane {
 
@@ -83,7 +82,6 @@ public class BattlePane extends JLayeredPane {
                 keyEnable = true;
 
                 MonsterController.defeat(monster);
-                messagePane.display("获得金币 " + monster.getGold() + " 经验值 " + monster.getExperience() + " !");
 
                 remove(monsterImage);
                 remove(monsterHealth);

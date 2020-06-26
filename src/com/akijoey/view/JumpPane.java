@@ -42,16 +42,16 @@ public class JumpPane extends JLayeredPane {
             private int select = 0;
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == e.VK_UP && select < labels.size() - 1) {
+                if (e.getKeyCode() == KeyEvent.VK_DOWN && select < labels.size() - 1) {
                     increase(1);
-                } else if (e.getKeyCode() == e.VK_DOWN && select > 0) {
+                } else if (e.getKeyCode() == KeyEvent.VK_UP && select > 0) {
                     increase(-1);
-                } else if (e.getKeyCode() == e.VK_SPACE) {
+                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     player.setDirection("down");
                     player.setFloor(select);
                     PlayerController.move(first[select][0], first[select][1]);
                     close();
-                } else if (e.getKeyCode() == e.VK_J) {
+                } else if (e.getKeyCode() == KeyEvent.VK_J) {
                     close();
                 }
             }

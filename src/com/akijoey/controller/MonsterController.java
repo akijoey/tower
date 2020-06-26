@@ -5,6 +5,7 @@ import com.akijoey.bean.Monster;
 import static com.akijoey.controller.PlayerController.player;
 import static com.akijoey.util.ConfigUtil.monsters;
 import static com.akijoey.view.ContentPane.battlePane;
+import static com.akijoey.view.ContentPane.messagePane;
 
 public class MonsterController {
 
@@ -44,6 +45,7 @@ public class MonsterController {
     public static void defeat(Monster monster) {
         player.setGold(player.getGold() + monster.getGold());
         player.setExperience(player.getExperience() + monster.getExperience());
+        messagePane.display("获得金币 " + monster.getGold() + " 经验值 " + monster.getExperience() + " !");
     }
 
     public static int lose(Monster monster) {

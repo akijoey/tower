@@ -9,44 +9,72 @@ public class ItemController {
 
     public static boolean interaction(int id) {
         if (id >= 1100 && id < 1110) {
-            takeKey(id);
+            getKey(id);
         } else if (id >= 1110 && id < 1120) {
-            takeBottle(id);
+            getBottle(id);
         } else if (id >= 1120 && id < 1130) {
-            takeGem(id);
+            getGem(id);
         } else if (id >= 1130 && id < 1140) {
-            takePack(id);
+            getPack(id);
         } else if (id >= 1140 && id < 1160) {
-            takeTool(id);
+            getTool(id);
         } else if (id >= 1160 && id < 1180) {
-            takeWeapon(id);
+            getWeapon(id);
         } else if (id >= 1180 && id < 1200) {
-            takeShield(id);
+            getShield(id);
         }
         return true;
     }
 
-    private static void takeTool(int id) {
-
+    private static void getTool(int id) {
+        Item item = player.getItem();
+        if (id == 1140) {
+            item.setCompass(true);
+            messagePane.display("得到 神圣的罗盘: 按 J 可跳跃楼层");
+        } else if (id == 1141) {
+            item.setPickaxe(true);
+            messagePane.display("得到 神圣的镐子: 按 P 可破坏隐藏墙壁");
+        } else if (id == 1142) {
+            item.setKettle(true);
+            player.setHealth(player.getHealth() * 2);
+            messagePane.display("得到 神圣的水壶: 生命值翻倍");
+        } else if (id == 1143) {
+            item.setCross(true);
+            messagePane.display("得到 仙女的十字架");
+        } else if (id == 1144) {
+            item.setBadge(true);
+            messagePane.display("得到 神圣的徽章: 按 L 可查看怪物信息");
+        } else if (id == 1148) {
+            item.setFlameWand(true);
+            messagePane.display("得到 火焰杖");
+        } else if (id == 1149) {
+            item.setFrozenWand(true);
+            messagePane.display("得到 冰冻杖");
+        } else if (id == 1150) {
+            item.setThunderWand(true);
+            messagePane.display("得到 雷电杖");
+        }
     }
 
-    private static void takePack(int id) {
+    private static void getPack(int id) {
         Item item = player.getItem();
         if (id == 1130) {
             item.setKeyPack(item.getKeyPack() + 1);
             item.setYellowKey(item.getYellowKey() + 1);
             item.setBlueBottle(item.getBlueKey() + 1);
-            item.setRedKey(item.getRedKey() + 1);
+            messagePane.display("得到一个 钥匙袋 各钥匙加 1 ！");
         } else if (id == 1131) {
             item.setGoldPack(item.getGoldPack() + 1);
             player.setGold(player.getGold() + 300);
+            messagePane.display("得到一个 金币袋 金币加 300 ！");
         } else if (id == 1132) {
             item.setExperiencePack(item.getExperiencePack() + 1);
             player.setExperience(player.getExperience() + 300);
+            messagePane.display("得到一个 经验袋 经验加 300 ！");
         }
     }
 
-    private static void takeKey(int id) {
+    private static void getKey(int id) {
         Item item = player.getItem();
         if (id == 1100) {
             item.setYellowKey(item.getYellowKey() + 1);
@@ -63,25 +91,25 @@ public class ItemController {
         }
     }
 
-    private static void takeGem(int id) {
+    private static void getGem(int id) {
         Item item = player.getItem();
         if (id == 1120) {
             item.setRedGem(item.getRedGem() + 1);
             player.setAttack(player.getAttack() + 3);
-            messagePane.display("得到一个 红宝石 攻击力加 3 ！");
+            messagePane.display("得到一个 红宝石 攻击加 3 ！");
         } else if (id == 1121) {
             item.setBlueGem(item.getBlueGem() + 1);
             player.setDefend(player.getDefend() + 3);
-            messagePane.display("得到一个 蓝宝石 防御力加 3 ！");
+            messagePane.display("得到一个 蓝宝石 防御加 3 ！");
         } else if (id == 1122) {
             item.setOrangeGem(item.getOrangeGem() + 1);
             player.setAttack(player.getAttack() + 3);
             player.setDefend(player.getDefend() + 3);
-            messagePane.display("得到一个 橙宝石 攻击力和防御力加 3 ！");
+            messagePane.display("得到一个 橙宝石 攻击和防御加 3 ！");
         }
     }
 
-    private static void takeBottle(int id) {
+    private static void getBottle(int id) {
         Item item = player.getItem();
         if (id == 1110) {
             item.setRedBottle(item.getRedBottle() + 1);
@@ -98,7 +126,7 @@ public class ItemController {
         }
     }
 
-    private static void takeWeapon(int id) {
+    private static void getWeapon(int id) {
         Item item = player.getItem();
         if (id == 1160) {
             player.setAttack(player.getAttack() + 10);
@@ -118,7 +146,7 @@ public class ItemController {
         }
     }
 
-    private static void takeShield(int id) {
+    private static void getShield(int id) {
         Item item = player.getItem();
         if (id == 1180) {
             player.setDefend(player.getDefend() + 10);
