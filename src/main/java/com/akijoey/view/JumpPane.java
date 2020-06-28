@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import static com.akijoey.MagicTowerGame.frame;
 import static com.akijoey.controller.PlayerController.player;
-import static com.akijoey.util.ConfigUtil.first;
+import static com.akijoey.util.ConfigUtil.positions;
 
 public class JumpPane extends JLayeredPane {
 
@@ -49,7 +49,7 @@ public class JumpPane extends JLayeredPane {
                 } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     player.setDirection("down");
                     player.setFloor(select);
-                    PlayerController.move(first[select][0], first[select][1]);
+                    PlayerController.move(positions.get(0)[select][0], positions.get(0)[select][1]);
                     close();
                 } else if (e.getKeyCode() == KeyEvent.VK_J) {
                     close();

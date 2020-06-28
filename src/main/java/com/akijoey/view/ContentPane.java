@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 import static com.akijoey.controller.PlayerController.player;
-import static com.akijoey.util.ConfigUtil.map;
+import static com.akijoey.util.ConfigUtil.maps;
 
 public class ContentPane extends JPanel {
 
@@ -59,7 +59,7 @@ public class ContentPane extends JPanel {
         // draw map
         for (int x = 0;x < 11;x++) {
             for (int y = 0;y < 11;y++) {
-                int id = map[player.getFloor()][y][x];
+                int id = maps.get(player.getFloor())[y][x];
                 g2.drawImage(keyframe.get(id), (x + 6) * 72, (y + 1) * 72, null);
             }
         }
@@ -83,7 +83,11 @@ public class ContentPane extends JPanel {
         g2.drawString(player.getItem().getRedKey() + "", 240, 680);
 
         // draw floor
-        g2.drawString(player.getFloor() + "", 200, 750);
+        int floor = player.getFloor();
+        if (floor == 31 || floor == 32) {
+            floor = 23;
+        }
+        g2.drawString(floor + "", 200, 750);
 
     }
 

@@ -1,7 +1,6 @@
 package com.akijoey.view;
 
 import com.akijoey.bean.Monster;
-import com.akijoey.controller.MonsterController;
 import com.akijoey.util.ImageUtil;
 
 import javax.swing.*;
@@ -12,7 +11,9 @@ import java.util.HashSet;
 
 import static com.akijoey.MagicTowerGame.*;
 import static com.akijoey.controller.PlayerController.player;
-import static com.akijoey.util.ConfigUtil.map;
+import static com.akijoey.util.ConfigUtil.maps;
+import static com.akijoey.util.ConfigUtil.monsters;
+import static com.akijoey.controller.MonsterController.lose;
 
 public class ForecastPane extends JLayeredPane {
 
@@ -32,10 +33,10 @@ public class ForecastPane extends JLayeredPane {
         HashSet<Integer> set = new HashSet<>();
         for (int x = 0;x < 11;x++) {
             for (int y = 0;y < 11;y++) {
-                int id = map[player.getFloor()][y][x];
-                if ((id >= 50 && id < 110) && !set.contains(id)) {
+                int id = maps.get(player.getFloor())[y][x];
+                if (id >= 1300 && !set.contains(id)) {
 
-                    Monster monster = MonsterController.create(id);
+                    Monster monster = new Monster(monsters.get(id));
 
                     // monster image label
                     JLabel monsterImage = new JLabel(new ImageIcon(ImageUtil.from.get(id)));
@@ -68,7 +69,8 @@ public class ForecastPane extends JLayeredPane {
                     add(monsterResource);
 
                     // player loss label
-                    JLabel playerLoss = createLabel("损失：" + MonsterController.lose(monster));
+                    int loss = lose(monster);
+                    JLabel playerLoss = createLabel("损失：" + (loss == -1 ? "???" : loss));
                     playerLoss.setBounds(563, 24 + 96 * count + 72 / 2, 3 * 72, 72 / 2);
                     add(playerLoss);
 
@@ -84,6 +86,7 @@ public class ForecastPane extends JLayeredPane {
                         frame.requestFocus();
                         keyEnable = true;
                         setVisible(false);
+                        removeAll();
                     }
                 }
             });

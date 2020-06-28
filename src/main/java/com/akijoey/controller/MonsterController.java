@@ -10,24 +10,11 @@ import static com.akijoey.view.ContentPane.messagePane;
 public class MonsterController {
 
     public static boolean interaction(int id) {
-        int loss = lose(create(id));
+        int loss = lose(new Monster(monsters.get(id)));
         if (loss != -1 && loss < player.getHealth()) {
             battlePane.display(id);
         }
         return false;
-    }
-
-    public static Monster create(int id) {
-        Monster proto = monsters.get(id);
-        Monster monster = new Monster();
-        monster.setId(id);
-        monster.setName(proto.getName());
-        monster.setHealth(proto.getHealth());
-        monster.setAttack(proto.getAttack());
-        monster.setDefend(proto.getDefend());
-        monster.setGold(proto.getGold());
-        monster.setExperience(proto.getExperience());
-        return monster;
     }
 
     public static void battle(Monster monster) {

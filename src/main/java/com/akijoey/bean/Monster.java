@@ -1,8 +1,9 @@
 package com.akijoey.bean;
 
+import java.util.HashMap;
+
 public class Monster extends Block {
 
-    private int id;
     private String name;
 
     private int health;
@@ -11,24 +12,13 @@ public class Monster extends Block {
     private int gold;
     private int experience;
 
-    public Monster() {}
-
-    public Monster(int id, String name, int health, int attack, int defend, int gold, int experience) {
-        this.id = id;
-        this.name = name;
-        this.health = health;
-        this.attack = attack;
-        this.defend = defend;
-        this.gold = gold;
-        this.experience = experience;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Monster(HashMap<String, Object> map) {
+        name = (String)map.get("name");
+        health = (Integer)map.get("health");
+        attack = (Integer)map.get("attack");
+        defend = (Integer)map.get("defend");
+        gold = (Integer)map.get("gold");
+        experience = (Integer)map.get("experience");
     }
 
     public String getName() {

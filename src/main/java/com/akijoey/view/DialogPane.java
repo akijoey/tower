@@ -9,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.akijoey.MagicTowerGame.frame;
 import static com.akijoey.util.ConfigUtil.messages;
@@ -22,7 +23,7 @@ public class DialogPane extends JLayeredPane {
 
     public void talk(int id) {
         Insets insets = getInsets();
-        String[] message = messages.get(id);
+        ArrayList<String> message = messages.get(id);
         ArrayList<BufferedImage> images = new ArrayList<>(){{
             add(ImageUtil.readPlayer("down"));
             add(ImageUtil.from.get(id));
@@ -42,7 +43,7 @@ public class DialogPane extends JLayeredPane {
         // text area
         JTextArea text = createTextArea();
         text.setBounds(100 + insets.left, 30 + insets.top, 400, 200);
-        text.setText(message[0]);
+        text.setText(message.get(0));
         add(text, 3, 0);
 
         setVisible(true);
@@ -55,7 +56,7 @@ public class DialogPane extends JLayeredPane {
                 if (e.getKeyCode() == e.VK_SPACE) {
                     remove(image);
                     remove(text);
-                    if (++count >= message.length) {    // close
+                    if (++count >= message.size()) {    // close
                         close();
                         return;
                     }
@@ -64,7 +65,7 @@ public class DialogPane extends JLayeredPane {
                     setBounds(x, y, 540, 200);
                     image.setIcon(new ImageIcon(images.get(count % 2)));
                     add(image, 2, 0);
-                    text.setText(message[count]);
+                    text.setText(message.get(count));
                     add(text, 3, 0);
                     repaint();
                 } else if (e.getKeyCode() == e.VK_ESCAPE) {
@@ -82,7 +83,7 @@ public class DialogPane extends JLayeredPane {
 
     public void shop(int id) {
         Insets insets = getInsets();
-        String[] message = messages.get(id).clone();
+        ArrayList<String> message = (ArrayList<String>)messages.get(id).clone();
         setBounds(550, 230, 550, 250);
 
         // background label
@@ -98,7 +99,7 @@ public class DialogPane extends JLayeredPane {
         // text area
         JTextArea text = createTextArea();
         text.setBounds(120 + insets.left, 20 + insets.top, 550 - 50, 250);
-        text.setText("请选择一个:\n" + message[0] + "\n" + message[1] + "\n" + message[2] + "\n" + message[3]);
+        text.setText("请选择一个:\n" + message.get(0) + "\n" + message.get(1) + "\n" + message.get(2) + "\n" + message.get(3));
         add(text, 3, 0);
 
         setVisible(true);
@@ -108,7 +109,7 @@ public class DialogPane extends JLayeredPane {
             private int select = 0;
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_DOWN && select < message.length - 1) {
+                if (e.getKeyCode() == KeyEvent.VK_DOWN && select < message.size() - 1) {
                     increase(1);
                 } else if (e.getKeyCode() == KeyEvent.VK_UP && select > 0) {
                     increase(-1);
@@ -122,9 +123,9 @@ public class DialogPane extends JLayeredPane {
                 }
             }
             private void increase(int increment) {
-                message[select] = message[select].replace("▶", "▷");
-                message[select += increment] = message[select].replace("▷", "▶");
-                text.setText("请选择一个:\n" + message[0] + "\n" + message[1] + "\n" + message[2] + "\n" + message[3]);
+                message.set(select, message.get(select).replace("▶", "▷"));
+                message.set(select += increment, message.get(select).replace("▷", "▶"));
+                text.setText("请选择一个:\n" + message.get(0) + "\n" + message.get(1) + "\n" + message.get(2) + "\n" + message.get(3));
                 repaint();
             }
             private void close() {

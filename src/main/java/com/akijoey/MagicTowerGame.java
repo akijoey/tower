@@ -1,5 +1,6 @@
 package com.akijoey;
 
+import com.akijoey.util.AudioUtil;
 import com.akijoey.view.ContentPane;
 
 import javax.swing.*;
@@ -19,6 +20,9 @@ public class MagicTowerGame {
     public static boolean keyEnable = true;
 
     public static void main(String[] args) {
+
+//        AudioUtil.playBackgroundMusic();
+
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

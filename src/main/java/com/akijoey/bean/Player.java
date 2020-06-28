@@ -1,54 +1,36 @@
 package com.akijoey.bean;
 
+import java.util.HashMap;
+
 public class Player extends Block {
 
-    private static Player player = new Player();
-
     private int level;
-    private int gold;
     private int experience;
+    private int gold;
 
     private int health;
     private int attack;
     private int defend;
 
+    private String direction;
     private int floor;
     private int limit;
-    private String direction;
 
     private Item item;
 
-    private Player() {
-//        level = 1;
-////        gold = 0;
-////        experience = 0;
-////        health = 1000;
-////        attack = 10;
-////        defend = 10;
-////        floor = 0;
-////        limit = 0;
-////        direction = "down";
-////        item = Item.getInstance();
-////        setX(5);
-////        setY(10);
-
-        // test
-        level = 1;
-        gold = 0;
-        experience = 0;
-        health = 100000;
-        attack = 10000;
-        defend = 10000;
-        floor = 0;
-        limit = 20;
-        direction = "down";
-        item = Item.getInstance();
-        setX(5);
-        setY(10);
-    }
-
-    public static Player getInstance() {
-        return player;
+    public Player(HashMap<String, Object> map) {
+        level = (Integer)map.get("level");
+        health = (Integer)map.get("health");
+        attack = (Integer)map.get("attack");
+        defend = (Integer)map.get("defend");
+        gold = (Integer)map.get("gold");
+        experience = (Integer)map.get("experience");
+        item = new Item((HashMap<String, Object>)map.get("item"));
+        setX((Integer)map.get("x"));
+        setY((Integer)map.get("y"));
+        direction = (String)map.get("direction");
+        floor = (Integer)map.get("floor");
+        limit = (Integer)map.get("limit");
     }
 
     public int getLevel() {

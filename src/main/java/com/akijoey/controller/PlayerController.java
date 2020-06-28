@@ -5,12 +5,13 @@ import com.akijoey.util.ImageUtil;
 
 import java.awt.image.BufferedImage;
 
-import static com.akijoey.util.ConfigUtil.map;
+import static com.akijoey.util.ConfigUtil.maps;
 import static com.akijoey.MagicTowerGame.frame;
+import static com.akijoey.util.ConfigUtil.attributes;
 
 public class PlayerController {
 
-    public static Player player = Player.getInstance();
+    public static Player player = new Player(attributes);
 
     public static BufferedImage draw() {
         return ImageUtil.readPlayer(player.getDirection());
@@ -20,7 +21,7 @@ public class PlayerController {
         player.setDirection(direction);
         int x = nextX(direction), y = nextY(direction);
         if (x >= 0 && x < 11 && y >= 0 && y < 11) {   // edge case
-            int id = map[player.getFloor()][y][x];
+            int id = maps.get(player.getFloor())[y][x];
             if (interaction(id)) {
                 move(x, y);
             }
@@ -28,7 +29,7 @@ public class PlayerController {
     }
 
     public static void move(int x, int y) {
-        map[player.getFloor()][y][x] = 1000;
+        maps.get(player.getFloor())[y][x] = 1000;
         player.setX(x);
         player.setY(y);
         frame.repaint();

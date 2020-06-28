@@ -2,7 +2,7 @@ package com.akijoey.controller;
 
 import com.akijoey.bean.Item;
 
-import static com.akijoey.util.ConfigUtil.map;
+import static com.akijoey.util.ConfigUtil.maps;
 import static com.akijoey.view.ContentPane.dialogPane;
 import static com.akijoey.controller.PlayerController.player;
 
@@ -23,8 +23,8 @@ public class NpcController {
 
     public static void talk(int id) {
         if (id == 1230) {   // 0层 仙子 第一次对话
-            map[0][8][5] = 1000;
-            map[0][8][4] = 1230;
+            maps.get(0)[8][5] = 1000;
+            maps.get(0)[8][4] = 1230;
             Item item = player.getItem();
             item.setYellowKey(item.getYellowKey() + 1);
             item.setBlueKey(item.getBlueKey() + 1);

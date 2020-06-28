@@ -1,40 +1,71 @@
 package com.akijoey.bean;
 
+import java.util.HashMap;
+
 public class Item {
 
-    private static Item item = new Item();
+    private int redGem;
+    private int blueGem;
+    private int orangeGem;
 
-    private int redGem = 0;
-    private int blueGem = 0;
-    private int orangeGem = 0;
+    private int redBottle;
+    private int blueBottle;
+    private int orangeBottle;
 
-    private int redBottle = 0;
-    private int blueBottle = 0;
-    private int orangeBottle = 0;
+    private int yellowKey;
+    private int blueKey;
+    private int redKey;
+    private int greenKey;
 
-    private int yellowKey = 100;
-    private int blueKey = 100;
-    private int redKey = 100;
-    private int greenKey = 100;
+    private int keyPack;
+    private int goldPack;
+    private int experiencePack;
 
-    private int keyPack = 0;
-    private int goldPack = 0;
-    private int experiencePack = 0;
+    private boolean cross;      // 仙女的十字架
+    private boolean badge;      // 神圣的徽章: 获取该层怪物信息
+    private boolean kettle;     // 神圣的水壶: 可增加一倍生命值
+    private boolean compass;    // 神圣的罗盘: 随意传送至各楼层
+    private boolean pickaxe;    // 神圣的镐子: 可以破坏隐藏墙壁
 
-    private boolean cross = false;      // 仙女的十字架
-    private boolean badge = false;      // 神圣的徽章: 获取该层怪物信息
-    private boolean kettle = false;     // 神圣的水壶: 可增加一倍生命值
-    private boolean compass = false;    // 神圣的罗盘: 随意传送至各楼层
-    private boolean pickaxe = false;    // 神圣的镐子: 可以破坏隐藏墙壁
+    private boolean plume;      // 飞羽
+    private boolean firePlume;  // 火飞羽
+    private boolean icePlume;   // 冰飞羽
 
-    private boolean flameWand = false;      // 火焰杖
-    private boolean frozenWand = false;     // 冰冻杖
-    private boolean thunderWand = false;    // 雷电杖
+    private boolean flameWand;      // 火焰杖
+    private boolean frozenWand;     // 冰冻杖
+    private boolean thunderWand;    // 雷电杖
 
-    private Item() {}
+    public Item(HashMap<String, Object> map) {
+        redGem = (Integer)map.get("redGem");
+        blueGem = (Integer)map.get("blueGem");
+        orangeGem = (Integer)map.get("orangeGem");
 
-    public static Item getInstance() {
-        return item;
+        redBottle = (Integer)map.get("redBottle");
+        blueBottle = (Integer)map.get("blueBottle");
+        orangeBottle = (Integer)map.get("orangeBottle");
+
+        yellowKey = (Integer)map.get("yellowKey");
+        blueKey = (Integer)map.get("blueKey");
+        redKey = (Integer)map.get("redKey");
+        greenKey = (Integer)map.get("greenKey");
+
+        keyPack = (Integer)map.get("keyPack");
+        goldPack = (Integer)map.get("goldPack");
+        experiencePack = (Integer)map.get("experiencePack");
+
+        cross = (Boolean)map.get("cross");
+        badge = (Boolean)map.get("badge");
+        kettle = (Boolean)map.get("kettle");
+        compass = (Boolean)map.get("compass");
+        pickaxe = (Boolean)map.get("pickaxe");
+
+        plume = (Boolean)map.get("plume");
+        firePlume = (Boolean)map.get("firePlume");
+        icePlume = (Boolean)map.get("icePlume");
+
+        flameWand = (Boolean)map.get("flameWand");
+        frozenWand = (Boolean)map.get("frozenWand");
+        thunderWand = (Boolean)map.get("thunderWand");
     }
 
     public int getRedGem() {
@@ -179,6 +210,30 @@ public class Item {
 
     public void setPickaxe(boolean pickaxe) {
         this.pickaxe = pickaxe;
+    }
+
+    public boolean isPlume() {
+        return plume;
+    }
+
+    public void setPlume(boolean plume) {
+        this.plume = plume;
+    }
+
+    public boolean isFirePlume() {
+        return firePlume;
+    }
+
+    public void setFirePlume(boolean firePlume) {
+        this.firePlume = firePlume;
+    }
+
+    public boolean isIcePlume() {
+        return icePlume;
+    }
+
+    public void setIcePlume(boolean icePlume) {
+        this.icePlume = icePlume;
     }
 
     public boolean isFlameWand() {

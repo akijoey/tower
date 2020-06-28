@@ -10,6 +10,7 @@ import java.awt.*;
 
 import static com.akijoey.MagicTowerGame.keyEnable;
 import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.util.ConfigUtil.monsters;
 
 public class BattlePane extends JLayeredPane {
 
@@ -22,7 +23,7 @@ public class BattlePane extends JLayeredPane {
 
     public void display(int id) {
 
-        Monster monster = MonsterController.create(id);
+        Monster monster = new Monster(monsters.get(id));
 
         // background label
         JLabel background = new JLabel(new ImageIcon(ImageUtil.battle));
@@ -82,14 +83,7 @@ public class BattlePane extends JLayeredPane {
                 keyEnable = true;
 
                 MonsterController.defeat(monster);
-
-                remove(monsterImage);
-                remove(monsterHealth);
-                remove(monsterAttack);
-                remove(monsterDefend);
-                remove(playerHealth);
-                remove(playerAttack);
-                remove(playerDefend);
+                removeAll();
 
                 PlayerController.move();
                 ((Timer)event.getSource()).stop();

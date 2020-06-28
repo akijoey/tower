@@ -4,8 +4,7 @@ import com.akijoey.bean.Item;
 
 import static com.akijoey.controller.PlayerController.player;
 import static com.akijoey.controller.PlayerController.move;
-import static com.akijoey.util.ConfigUtil.first;
-import static com.akijoey.util.ConfigUtil.last;
+import static com.akijoey.util.ConfigUtil.positions;
 
 public class BlockController {
 
@@ -42,15 +41,27 @@ public class BlockController {
     private static void climbStair(int id) {
         int floor = player.getFloor();
         player.setDirection("down");
-        if (id == 1040) {
-            player.setFloor(++floor);
-            move(first[floor][0], first[floor][1]);
-            if (floor > player.getLimit()) {    // update floor limit for jump
-                player.setLimit(floor);
+        if (id % 2 == 0) {  // climb up
+            if (id == 1040) {
+                player.setFloor(++floor);
+                if (floor > player.getLimit()) {    // update floor limit for jump
+                    player.setLimit(floor);
+                }
+            } else if (id == 1042) {
+                player.setFloor(floor += 9);
+            } else if (id == 1044) {
+                player.setFloor(floor += 10);
             }
-        } else if (id == 1041) {
-            player.setFloor(--floor);
-            move(last[floor][0], last[floor][1]);
+            move(positions.get(0)[floor][0], positions.get(0)[floor][1]);
+        } else {  // climb down
+            if (id == 1041) {
+                player.setFloor(--floor);
+            } else if (id == 1043) {
+                player.setFloor(floor -= 9);
+            } else if (id == 1045) {
+                player.setFloor(floor -= 10);
+            }
+            move(positions.get(1)[floor][0], positions.get(1)[floor][1]);
         }
     }
 
