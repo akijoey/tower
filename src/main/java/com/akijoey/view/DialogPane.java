@@ -24,6 +24,9 @@ public class DialogPane extends JLayeredPane {
     public void talk(int id) {
         Insets insets = getInsets();
         ArrayList<String> message = messages.get(id);
+        if (message == null) {
+            return;
+        }
         ArrayList<BufferedImage> images = new ArrayList<>(){{
             add(ImageUtil.readPlayer("down"));
             add(ImageUtil.from.get(id));
@@ -114,10 +117,11 @@ public class DialogPane extends JLayeredPane {
                 } else if (e.getKeyCode() == KeyEvent.VK_UP && select > 0) {
                     increase(-1);
                 } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    if (select != 3) {
-                        NpcController.shop(id, select);
+                    if (select == 3) {
+                        close();
+                        return;
                     }
-                    close();
+                    NpcController.shop(id, select);
                 } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     close();
                 }

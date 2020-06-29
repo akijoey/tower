@@ -6,6 +6,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.*;
 
+import static com.akijoey.controller.PlayerController.player;
+
 public class ConfigUtil {
 
     public static ArrayList<int[][]> maps;
@@ -35,6 +37,19 @@ public class ConfigUtil {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public static void writeConfig(String name, Object data) {
+        URL url = Thread.currentThread().getContextClassLoader().getResource("config/");
+        File config = new File(url.getPath() + name + ".json");
+        try {
+            if (!config.exists()) {
+                config.createNewFile();
+            }
+            new ObjectMapper().writeValue(config, data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<int[][]> readMap() {
@@ -75,6 +90,13 @@ public class ConfigUtil {
                 add(arr);
             });
         }};
+    }
+
+    public static void archive() {
+        writeConfig("archive", new HashMap<>(){{
+            put("player", player);
+            put("map", maps);
+        }});
     }
 
 }

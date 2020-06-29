@@ -35,6 +35,18 @@ public class Item {
     private boolean frozenWand;     // 冰冻杖
     private boolean thunderWand;    // 雷电杖
 
+    private boolean ironSword;      // 铁剑
+    private boolean silverSword;    // 白银剑
+    private boolean goldSword;      // 黄金剑
+    private boolean diamondSword;   // 钻石剑
+    private boolean holySword;      // 神圣剑
+
+    private boolean ironShield;     // 铁盾
+    private boolean silverShield;   // 白银盾
+    private boolean goldShield;     // 黄金盾
+    private boolean diamondShield;  // 钻石盾
+    private boolean holyShield;     // 神圣盾
+
     public Item(HashMap<String, Object> map) {
         redGem = (Integer)map.get("redGem");
         blueGem = (Integer)map.get("blueGem");
@@ -66,6 +78,18 @@ public class Item {
         flameWand = (Boolean)map.get("flameWand");
         frozenWand = (Boolean)map.get("frozenWand");
         thunderWand = (Boolean)map.get("thunderWand");
+
+        ironSword = (Boolean)map.get("ironSword");
+        silverSword = (Boolean)map.get("silverSword");
+        goldSword = (Boolean)map.get("goldSword");
+        diamondSword = (Boolean)map.get("diamondSword");
+        holySword = (Boolean)map.get("holySword");
+
+        ironShield = (Boolean)map.get("ironShield");
+        silverShield = (Boolean)map.get("silverShield");
+        goldShield = (Boolean)map.get("goldShield");
+        diamondShield = (Boolean)map.get("diamondShield");
+        holyShield = (Boolean)map.get("holyShield");
     }
 
     public int getRedGem() {
@@ -258,5 +282,85 @@ public class Item {
 
     public void setThunderWand(boolean thunderWand) {
         this.thunderWand = thunderWand;
+    }
+
+    public boolean isIronSword() {
+        return ironSword;
+    }
+
+    public void setIronSword(boolean ironSword) {
+        this.ironSword = ironSword;
+    }
+
+    public boolean isSilverSword() {
+        return silverSword;
+    }
+
+    public void setSilverSword(boolean silverSword) {
+        this.silverSword = silverSword;
+    }
+
+    public boolean isGoldSword() {
+        return goldSword;
+    }
+
+    public void setGoldSword(boolean goldSword) {
+        this.goldSword = goldSword;
+    }
+
+    public boolean isDiamondSword() {
+        return diamondSword;
+    }
+
+    public void setDiamondSword(boolean diamondSword) {
+        this.diamondSword = diamondSword;
+    }
+
+    public boolean isHolySword() {
+        return holySword;
+    }
+
+    public void setHolySword(boolean holySword) {
+        this.holySword = holySword;
+    }
+
+    public boolean isIronShield() {
+        return ironShield;
+    }
+
+    public void setIronShield(boolean ironShield) {
+        this.ironShield = ironShield;
+    }
+
+    public boolean isSilverShield() {
+        return silverShield;
+    }
+
+    public void setSilverShield(boolean silverShield) {
+        this.silverShield = silverShield;
+    }
+
+    public boolean isGoldShield() {
+        return goldShield;
+    }
+
+    public void setGoldShield(boolean goldShield) {
+        this.goldShield = goldShield;
+    }
+
+    public boolean isDiamondShield() {
+        return diamondShield;
+    }
+
+    public void setDiamondShield(boolean diamondShield) {
+        this.diamondShield = diamondShield;
+    }
+
+    public boolean isHolyShield() {
+        return holyShield;
+    }
+
+    public void setHolyShield(boolean holyShield) {
+        this.holyShield = holyShield;
     }
 }

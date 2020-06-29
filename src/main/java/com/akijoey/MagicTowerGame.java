@@ -7,12 +7,13 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import static com.akijoey.controller.PlayerController.player;
 import static com.akijoey.controller.PlayerController.turn;
+import static com.akijoey.util.ConfigUtil.archive;
 import static com.akijoey.view.ContentPane.forecastPane;
 
 import static com.akijoey.view.ContentPane.jumpPane;
 import static java.awt.event.KeyEvent.*;
-import static java.awt.event.KeyEvent.VK_UP;
 
 public class MagicTowerGame {
 
@@ -41,10 +42,17 @@ public class MagicTowerGame {
                             turn("up");
                             break;
                         case VK_L:
-                            forecastPane.display();
+                            if (player.getItem().isBadge()) {
+                                forecastPane.display();
+                            }
                             break;
                         case VK_J:
-                            jumpPane.display();
+                            if (player.getItem().isCompass()) {
+                                jumpPane.display();
+                            }
+                            break;
+                        case VK_S:
+                            archive();
                             break;
                     }
                 }

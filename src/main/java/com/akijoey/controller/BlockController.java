@@ -26,7 +26,7 @@ public class BlockController {
             item.setYellowKey(item.getYellowKey() - 1);
             return true;
         } else if (id == 1051 && item.getBlueKey() > 0) {
-            item.setBlueBottle(item.getBlueKey() - 1);
+            item.setBlueKey(item.getBlueKey() - 1);
             return true;
         } else if (id == 1052 && item.getRedKey() > 0) {
             item.setRedKey(item.getRedKey() - 1);

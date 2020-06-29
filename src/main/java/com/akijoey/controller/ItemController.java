@@ -62,6 +62,7 @@ public class ItemController {
             item.setKeyPack(item.getKeyPack() + 1);
             item.setYellowKey(item.getYellowKey() + 1);
             item.setBlueBottle(item.getBlueKey() + 1);
+            item.setBlueBottle(item.getRedKey() + 1);
             messagePane.display("得到一个 钥匙袋 各钥匙加 1 ！");
         } else if (id == 1131) {
             item.setGoldPack(item.getGoldPack() + 1);
@@ -129,40 +130,50 @@ public class ItemController {
     private static void getWeapon(int id) {
         Item item = player.getItem();
         if (id == 1160) {
-            player.setAttack(player.getAttack() + 10);
-            messagePane.display("获得 铁剑 攻击加 10 ！");
+            item.setIronSword(true);
+            player.setAttack(player.getAttack() + 15);
+            messagePane.display("获得 铁剑 攻击加 15 ！");
         } else if (id == 1161) {
+            item.setSilverSword(true);
             player.setAttack(player.getAttack() + 50);
-            messagePane.display("获得 钢剑 攻击加 50 ！");
+            messagePane.display("获得 白银剑 攻击加 50 ！");
         } else if (id == 1162) {
+            item.setGoldSword(true);
             player.setAttack(player.getAttack() + 120);
-            messagePane.display("获得 旅人剑 攻击加 120 ！");
+            messagePane.display("获得 黄金剑 攻击加 120 ！");
         } else if (id == 1163) {
+            item.setDiamondSword(true);
             player.setAttack(player.getAttack() + 300);
-            messagePane.display("获得 圣光剑 攻击加 300 ！");
+            messagePane.display("获得 钻石剑 攻击加 300 ！");
         } else if (id == 1164) {
+            item.setHolySword(true);
             player.setAttack(player.getAttack() + 500);
-            messagePane.display("获得 王族剑 攻击加 500 ！");
+            messagePane.display("获得 神圣剑 攻击加 500 ！");
         }
     }
 
     private static void getShield(int id) {
         Item item = player.getItem();
         if (id == 1180) {
-            player.setDefend(player.getDefend() + 10);
-            messagePane.display("获得 铁盾 防御加 10 ！");
+            item.setIronShield(true);
+            player.setDefend(player.getDefend() + 15);
+            messagePane.display("获得 铁盾 防御加 15 ！");
         } else if (id == 1181) {
-            player.setDefend(player.getDefend() + 30);
-            messagePane.display("获得 钢盾 防御加 10 ！");
+            item.setSilverShield(true);
+            player.setDefend(player.getDefend() + 50);
+            messagePane.display("获得 白银盾 防御加 50 ！");
         } else if (id == 1182) {
+            item.setGoldShield(true);
             player.setDefend(player.getDefend() + 120);
-            messagePane.display("获得 旅人盾 防御加 10 ！");
+            messagePane.display("获得 黄金盾 防御加 120 ！");
         } else if (id == 1183) {
+            item.setDiamondShield(true);
             player.setDefend(player.getDefend() + 300);
-            messagePane.display("获得 星光盾 防御加 10 ！");
+            messagePane.display("获得 钻石盾 防御加 300 ！");
         } else if (id == 1184) {
+            item.setHolyShield(true);
             player.setDefend(player.getDefend() + 500);
-            messagePane.display("获得 王族盾 防御加 10 ！");
+            messagePane.display("获得 神圣盾 防御加 500 ！");
         }
     }
 

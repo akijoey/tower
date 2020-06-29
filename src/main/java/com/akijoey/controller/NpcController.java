@@ -5,6 +5,7 @@ import com.akijoey.bean.Item;
 import static com.akijoey.util.ConfigUtil.maps;
 import static com.akijoey.view.ContentPane.dialogPane;
 import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.view.ContentPane.messagePane;
 
 public class NpcController {
 
@@ -29,13 +30,20 @@ public class NpcController {
             item.setYellowKey(item.getYellowKey() + 1);
             item.setBlueKey(item.getBlueKey() + 1);
             item.setRedKey(item.getRedKey() + 1);
+        } else if (id == 1241) {
+            maps.get(4)[0][5] = 1240;
+            maps.get(2)[6][1] = 1000;
         }
     }
 
     public static void shop(int id, int select) {
         int gold = player.getGold();
         int experience = player.getExperience();
-        if (id == 1201 && gold >= 25) {   // 3层 商店
+        if (id == 1201) {   // 3层 商店
+            if (gold < 25) {
+                messagePane.display("金币不足");
+                return;
+            }
             player.setGold(gold - 25);
             if (select == 0) {
                 player.setHealth(player.getHealth() + 800);
@@ -44,7 +52,11 @@ public class NpcController {
             } else {
                 player.setDefend(player.getDefend() + 4);
             }
-        } else if (id == 1204 && gold >= 100) {    // 11层 商店
+        } else if (id == 1204) {    // 11层 商店
+            if (gold < 100) {
+                messagePane.display("金币不足");
+                return;
+            }
             player.setGold(gold - 100);
             if (select == 0) {
                 player.setHealth(player.getHealth() + 4000);
@@ -54,54 +66,102 @@ public class NpcController {
                 player.setDefend(player.getDefend() + 20);
             }
         } else if (id == 1211) {    // 5层 老人
-            if (select == 0 && experience >= 100) {
+            if (select == 0) {
+                if (experience < 100) {
+                    messagePane.display("经验不足");
+                    return;
+                }
                 player.setExperience(experience - 100);
                 player.setLevel(player.getLevel() + 1);
                 player.setHealth(player.getHealth() + 1000);
                 player.setAttack(player.getAttack() + 7);
                 player.setDefend(player.getDefend() + 7);
-            } else if (select == 1 && experience >= 30) {
+            } else if (select == 1) {
+                if (experience < 30) {
+                    messagePane.display("经验不足");
+                    return;
+                }
                 player.setExperience(experience - 30);
                 player.setAttack(player.getAttack() + 5);
-            } else if (select == 2 && experience >= 30) {
+            } else if (select == 2) {
+                if (experience < 30) {
+                    messagePane.display("经验不足");
+                    return;
+                }
                 player.setExperience(experience - 30);
                 player.setDefend(player.getDefend() + 5);
             }
         } else if (id == 1212) {    // 13层 老人
-            if (select == 0 && experience >= 270) {
+            if (select == 0) {
+                if (experience < 270) {
+                    messagePane.display("经验不足");
+                    return;
+                }
                 player.setExperience(experience - 270);
                 player.setLevel(player.getLevel() + 3);
                 player.setHealth(player.getHealth() + 3000);
                 player.setAttack(player.getAttack() + 21);
                 player.setDefend(player.getDefend() + 21);
-            } else if (select == 1 && experience >= 95) {
+            } else if (select == 1) {
+                if (experience < 95) {
+                    messagePane.display("经验不足");
+                    return;
+                }
                 player.setExperience(experience - 95);
                 player.setAttack(player.getAttack() + 17);
-            } else if (select == 2 && experience >= 95) {
+            } else if (select == 2) {
+                if (experience < 95) {
+                    messagePane.display("经验不足");
+                    return;
+                }
                 player.setExperience(experience - 95);
                 player.setDefend(player.getDefend() + 17);
             }
         } else if (id == 1221) {    // 5层 商人
             Item item = player.getItem();
-            if (select == 0 && gold >= 10) {
+            if (select == 0) {
+                if (gold < 10) {
+                    messagePane.display("金币不足");
+                    return;
+                }
                 player.setGold(gold - 10);
                 item.setYellowKey(item.getYellowKey() + 1);
-            } else if (select == 1 && gold >= 50) {
+            } else if (select == 1) {
+                if (gold < 50) {
+                    messagePane.display("金币不足");
+                    return;
+                }
                 player.setGold(gold - 50);
                 item.setBlueKey(item.getBlueKey() + 1);
-            } else if (select == 2 && gold >= 100) {
+            } else if (select == 2) {
+                if (gold < 100) {
+                    messagePane.display("金币不足");
+                    return;
+                }
                 player.setGold(gold - 100);
                 item.setRedKey(item.getRedKey() + 1);
             }
         } else if (id == 1222) {    // 12层 商人
             Item item = player.getItem();
-            if (select == 0 && item.getYellowKey() > 0) {
+            if (select == 0) {
+                if (item.getYellowKey() == 0) {
+                    messagePane.display("黄钥匙不足");
+                    return;
+                }
                 item.setYellowKey(item.getYellowKey() - 1);
                 player.setGold(gold + 7);
-            } else if (select == 1 && item.getBlueKey() > 0) {
+            } else if (select == 1) {
+                if (item.getBlueKey() == 0) {
+                    messagePane.display("蓝钥匙不足");
+                    return;
+                }
                 item.setBlueKey(item.getBlueKey() - 1);
                 player.setGold(gold + 35);
-            } else if (select == 2 && item.getRedKey() > 0) {
+            } else if (select == 2) {
+                if (item.getRedKey() == 0) {
+                    messagePane.display("红钥匙不足");
+                    return;
+                }
                 item.setRedKey(item.getRedKey() - 1);
                 player.setGold(gold + 70);
             }
