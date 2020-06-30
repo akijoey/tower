@@ -9,8 +9,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import static com.akijoey.MagicTowerGame.frame;
-import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.util.ConfigUtil.positions;
+import static com.akijoey.view.ContentPane.messagePane;
 
 public class JumpPane extends JLayeredPane {
 
@@ -26,10 +27,12 @@ public class JumpPane extends JLayeredPane {
     public void display() {
         ArrayList<JLabel> labels = new ArrayList<>();
         for (int i = 0;i <= player.getLimit();i++) {
-            JLabel label = new JLabel("▷ 第 " + i + " 层");
-            label.setFont(new Font("Serif", 0, 30));
-            label.setForeground(Color.WHITE);
-            label.setBounds(50 + i / 10 * 200, 50 + i % 10 * 50, 200, 50);
+            int x = 50 + i / 10 * 200, y = 50 + i % 10 * 50;
+            JLabel label = new JLabel("▷ 第 " + i + " 层"){{
+                setFont(new Font("Serif", 0, 30));
+                setForeground(Color.WHITE);
+                setBounds(x, y, 200, 50);
+            }};
             labels.add(label);
             add(label);
         }
@@ -50,6 +53,7 @@ public class JumpPane extends JLayeredPane {
                     player.setDirection("down");
                     player.setFloor(select);
                     PlayerController.move(positions.get(0)[select][0], positions.get(0)[select][1]);
+                    messagePane.display("第   " + select + "   层");
                     close();
                 } else if (e.getKeyCode() == KeyEvent.VK_J) {
                     close();

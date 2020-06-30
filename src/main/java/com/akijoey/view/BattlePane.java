@@ -8,8 +8,8 @@ import com.akijoey.util.ImageUtil;
 import javax.swing.*;
 import java.awt.*;
 
-import static com.akijoey.MagicTowerGame.keyEnable;
-import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.MagicTowerGame.frame;
+import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.util.ConfigUtil.monsters;
 
 public class BattlePane extends JLayeredPane {
@@ -71,8 +71,8 @@ public class BattlePane extends JLayeredPane {
         playerDefend.setText(player.getDefend() + "");
         add(playerDefend, 7, 0);
 
-        keyEnable = false;
         setVisible(true);
+        requestFocus();
 
         new Timer(500, event -> {
             MonsterController.battle(monster);
@@ -80,7 +80,7 @@ public class BattlePane extends JLayeredPane {
             playerHealth.setText(player.getHealth() + "");
             if (monster.getHealth() <= 0) {
                 setVisible(false);
-                keyEnable = true;
+                frame.requestFocus();
 
                 MonsterController.defeat(monster);
                 removeAll();
@@ -92,10 +92,10 @@ public class BattlePane extends JLayeredPane {
     }
 
     private JLabel createLabel() {
-        JLabel label = new JLabel();
-        label.setForeground(Color.WHITE);
-        label.setFont(new Font("Serif", 0, 35));
-        return label;
+        return new JLabel(){{
+            setFont(new Font("Serif", 0, 35));
+            setForeground(Color.WHITE);
+        }};
     }
 
 }

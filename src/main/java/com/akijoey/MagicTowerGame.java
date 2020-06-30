@@ -2,32 +2,47 @@ package com.akijoey;
 
 import com.akijoey.util.AudioUtil;
 import com.akijoey.view.ContentPane;
+import com.akijoey.view.MenuPane;
 
 import javax.swing.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
-import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.controller.PlayerController.turn;
-import static com.akijoey.util.ConfigUtil.archive;
-import static com.akijoey.view.ContentPane.forecastPane;
+import static com.akijoey.util.ConfigUtil.saveArchive;
+import static com.akijoey.util.ConfigUtil.loadArchive;
 
-import static com.akijoey.view.ContentPane.jumpPane;
+import static com.akijoey.view.ContentPane.*;
 import static java.awt.event.KeyEvent.*;
 
 public class MagicTowerGame {
 
-    public static JFrame frame = new JFrame("Magic Tower v1.12");
-    public static boolean keyEnable = true;
+    public static JFrame frame;
 
     public static void main(String[] args) {
+        display(new JFrame("Magic Tower"){{
+            setContentPane(new MenuPane(){{
+                startGame(event -> {
+                    dispose();
+                    start();
+                });
+                loadGame(event -> {
+                    loadArchive();
+                    dispose();
+                    start();
+                });
+                quitGame(event -> dispose());
+            }});
+        }});
+    }
 
-//        AudioUtil.playBackgroundMusic();
-
-        frame.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (keyEnable) {
+    public static void start() {
+        AudioUtil.playBackgroundMusic();
+        display(frame = new JFrame("Magic Tower v1.12"){{
+            setContentPane(new ContentPane());
+            addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
                     switch (e.getKeyCode()) {
                         case VK_RIGHT:
                             turn("right");
@@ -52,20 +67,25 @@ public class MagicTowerGame {
                             }
                             break;
                         case VK_S:
-                            archive();
+                            saveArchive();
+                            messagePane.display("保存成功");
+                            break;
+                        case VK_A:
+                            loadArchive();
+                            getContentPane().repaint();
+                            messagePane.display("读档成功");
                             break;
                     }
                 }
-            }
-        });
+            });
+        }});
+    }
 
-        ContentPane pane = new ContentPane();
-        frame.setContentPane(pane);
-
+    public static void display(JFrame frame) {
         frame.pack();
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(3);
         frame.setVisible(true);
     }
 

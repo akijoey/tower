@@ -7,11 +7,9 @@ import java.awt.image.BufferedImage;
 
 import static com.akijoey.util.ConfigUtil.maps;
 import static com.akijoey.MagicTowerGame.frame;
-import static com.akijoey.util.ConfigUtil.attributes;
+import static com.akijoey.util.ConfigUtil.player;
 
 public class PlayerController {
-
-    public static Player player = new Player(attributes);
 
     public static BufferedImage draw() {
         return ImageUtil.readPlayer(player.getDirection());

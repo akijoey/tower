@@ -5,11 +5,11 @@ import com.akijoey.util.ImageUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import static com.akijoey.MagicTowerGame.frame;
 import static com.akijoey.util.ConfigUtil.messages;
@@ -108,6 +108,7 @@ public class DialogPane extends JLayeredPane {
         setVisible(true);
         requestFocus();
 
+        DialogPane that = this;
         addKeyListener(new KeyAdapter() {
             private int select = 0;
             @Override
@@ -144,22 +145,22 @@ public class DialogPane extends JLayeredPane {
     }
 
     private JLabel createBackground() {
-        JLabel background = new JLabel(new ImageIcon(ImageUtil.blank));
-        Color color = new Color(204, 102, 0);
-        background.setBorder(BorderFactory.createLineBorder(color, 8, true));
-        return background;
+        return new JLabel(new ImageIcon(ImageUtil.blank)){{
+            Color color = new Color(204, 102, 0);
+            setBorder(BorderFactory.createLineBorder(color, 8, true));
+        }};
     }
 
     private JTextArea createTextArea() {
-        JTextArea text = new JTextArea(20, 20);
-        text.setForeground(Color.WHITE);
-        text.setFont(new Font("Serif", 0, 28));
-        text.setWrapStyleWord(true);
-        text.setLineWrap(true);
-        text.setOpaque(false);
-        text.setEditable(false);
-        text.setFocusable(false);
-        return text;
+        return new JTextArea(20, 20){{
+            setForeground(Color.WHITE);
+            setFont(new Font("Serif", 0, 28));
+            setWrapStyleWord(true);
+            setLineWrap(true);
+            setOpaque(false);
+            setEditable(false);
+            setFocusable(false);
+        }};
     }
 
 }

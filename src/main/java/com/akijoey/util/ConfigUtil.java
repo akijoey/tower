@@ -1,26 +1,24 @@
 package com.akijoey.util;
 
+import com.akijoey.bean.Player;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.net.URL;
 import java.util.*;
 
-import static com.akijoey.controller.PlayerController.player;
-
 public class ConfigUtil {
 
+    public static Player player;
     public static ArrayList<int[][]> maps;
-    public static HashMap<String, Object> attributes;
 
     public static ArrayList<int[][]> positions;
     public static HashMap<Integer, HashMap<String, Object>> monsters;
     public static HashMap<Integer, ArrayList<String>> messages;
 
     static {
-        maps = readMap();
-        attributes = readPlayer();
-
+        player = new Player(readPlayer("default"));
+        maps = readMap("default");
         positions = readPosition();
         monsters = readMonster();
         messages = readMessage();
@@ -52,13 +50,13 @@ public class ConfigUtil {
         }
     }
 
-    public static ArrayList<int[][]> readMap() {
-        List<List<List<Integer>>> map = (List)readConfig("default").get("map");
+    public static ArrayList<int[][]> readMap(String name) {
+        List<List<List<Integer>>> map = (List)readConfig(name).get("map");
         return parseList(map);
     }
 
-    public static HashMap<String, Object> readPlayer() {
-        return (HashMap<String, Object>)readConfig("default").get("player");
+    public static HashMap<String, Object> readPlayer(String name) {
+        return (HashMap<String, Object>)readConfig(name).get("player");
     }
 
     public static ArrayList<int[][]> readPosition() {
@@ -92,11 +90,21 @@ public class ConfigUtil {
         }};
     }
 
-    public static void archive() {
+    public static boolean hasArchive() {
+        URL url = Thread.currentThread().getContextClassLoader().getResource("config/");
+        return new File(url.getPath() + "archive.json").exists();
+    }
+
+    public static void saveArchive() {
         writeConfig("archive", new HashMap<>(){{
             put("player", player);
             put("map", maps);
         }});
+    }
+
+    public static void loadArchive() {
+        player = new Player(readPlayer("archive"));
+        maps = readMap("archive");
     }
 
 }

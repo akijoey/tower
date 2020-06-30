@@ -10,10 +10,11 @@ import java.awt.event.KeyEvent;
 import java.util.HashSet;
 
 import static com.akijoey.MagicTowerGame.*;
-import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.util.ConfigUtil.maps;
 import static com.akijoey.util.ConfigUtil.monsters;
 import static com.akijoey.controller.MonsterController.lose;
+import static com.akijoey.controller.MonsterController.isMonster;
 
 public class ForecastPane extends JLayeredPane {
 
@@ -26,7 +27,6 @@ public class ForecastPane extends JLayeredPane {
     }
 
     public void display() {
-        keyEnable = false;
         setVisible(true);
         requestFocus();
         int count = 0;
@@ -34,7 +34,7 @@ public class ForecastPane extends JLayeredPane {
         for (int x = 0;x < 11;x++) {
             for (int y = 0;y < 11;y++) {
                 int id = maps.get(player.getFloor())[y][x];
-                if (id >= 1300 && !set.contains(id)) {
+                if (isMonster(id) && !set.contains(id)) {
 
                     Monster monster = new Monster(monsters.get(id));
 
@@ -84,7 +84,6 @@ public class ForecastPane extends JLayeredPane {
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == e.VK_L) {
                         frame.requestFocus();
-                        keyEnable = true;
                         setVisible(false);
                         removeAll();
                     }
@@ -94,10 +93,10 @@ public class ForecastPane extends JLayeredPane {
     }
 
     private JLabel createLabel(String text) {
-        JLabel label = new JLabel(text);
-        label.setForeground(Color.WHITE);
-        label.setFont(new Font("Serif", 0, 25));
-        return label;
+        return new JLabel(text){{
+            setForeground(Color.WHITE);
+            setFont(new Font("Serif", 0, 25));
+        }};
     }
 
 }

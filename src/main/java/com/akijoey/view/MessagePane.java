@@ -5,7 +5,8 @@ import com.akijoey.util.ImageUtil;
 import javax.swing.*;
 import java.awt.*;
 
-import static com.akijoey.MagicTowerGame.keyEnable;
+import static com.akijoey.MagicTowerGame.frame;
+import static com.akijoey.view.ContentPane.dialogPane;
 
 public class MessagePane extends JLayeredPane {
 
@@ -16,37 +17,34 @@ public class MessagePane extends JLayeredPane {
         setVisible(false);
 
         // background label
-        JLabel background = new JLabel(new ImageIcon(ImageUtil.blank));
-        background.setLayout(null);
-        background.setBounds(0, 0, 72 * 18 - 20, 150);
-        background.setBorder(BorderFactory.createLineBorder(new Color(204, 102, 0), 8, true));
-        add(background, 1, 0);
-
-        // message label
-        JLabel messageLabel = new JLabel();
-        messageLabel.setForeground(Color.WHITE);
-        messageLabel.setFont(new Font("Serif", 0, 50));
-        messageLabel.setBounds(0, 0, 72 * 18 - 20, 150);
-        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(messageLabel, 2, 0);
+        add(new JLabel(new ImageIcon(ImageUtil.blank)){{
+            setLayout(null);
+            setBounds(0, 0, 72 * 18 - 20, 150);
+            Color color = new Color(204, 102, 0);
+            setBorder(BorderFactory.createLineBorder(color, 8, true));
+        }}, 1, 0);
     }
 
     public void display(String message) {
 
         // message label
-        JLabel messageLabel = new JLabel();
-        messageLabel.setForeground(Color.WHITE);
-        messageLabel.setFont(new Font("Serif", 0, 50));
-        messageLabel.setBounds(0, 0, 72 * 18 - 20, 150);
-        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        messageLabel.setText(message);
+        JLabel messageLabel = new JLabel(message){{
+            setForeground(Color.WHITE);
+            setFont(new Font("Serif", 0, 50));
+            setHorizontalAlignment(SwingConstants.CENTER);
+            setBounds(0, 0, 72 * 18 - 20, 150);
+        }};
         add(messageLabel, 2, 0);
 
         setVisible(true);
-        keyEnable = false;
+        requestFocus();
 
         new Timer(500, event -> {
-            keyEnable = true;
+            if (message.equals("经验不足") || message.equals("金币不足")) {
+                dialogPane.requestFocus();
+            } else {
+                frame.requestFocus();
+            }
             setVisible(false);
             remove(messageLabel);
             ((Timer)event.getSource()).stop();

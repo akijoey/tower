@@ -2,8 +2,7 @@ package com.akijoey.controller;
 
 import com.akijoey.bean.Monster;
 
-import static com.akijoey.controller.PlayerController.player;
-import static com.akijoey.util.ConfigUtil.monsters;
+import static com.akijoey.util.ConfigUtil.*;
 import static com.akijoey.view.ContentPane.battlePane;
 import static com.akijoey.view.ContentPane.messagePane;
 
@@ -15,6 +14,10 @@ public class MonsterController {
             battlePane.display(id);
         }
         return false;
+    }
+
+    public static boolean isMonster(int id) {
+        return (id >= 1300 && id < 1342) || id == 1349 || id == 1358;
     }
 
     public static void battle(Monster monster) {
@@ -30,6 +33,15 @@ public class MonsterController {
     }
 
     public static void defeat(Monster monster) {
+        if (monster.getName().equals("魔龙")) {
+            for (int y = 1;y < 4;y++) {
+                for (int x = 4;x < 7;x++) {
+                    maps.get(24)[y][x] = 1000;
+                }
+            }
+            messagePane.display("恭喜你，游戏通关");
+            return;
+        }
         player.setGold(player.getGold() + monster.getGold());
         player.setExperience(player.getExperience() + monster.getExperience());
         messagePane.display("获得金币 " + monster.getGold() + " 经验值 " + monster.getExperience() + " !");

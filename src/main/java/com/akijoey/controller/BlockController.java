@@ -2,9 +2,10 @@ package com.akijoey.controller;
 
 import com.akijoey.bean.Item;
 
-import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.controller.PlayerController.move;
 import static com.akijoey.util.ConfigUtil.positions;
+import static com.akijoey.view.ContentPane.messagePane;
 
 public class BlockController {
 
@@ -63,6 +64,7 @@ public class BlockController {
             }
             move(positions.get(1)[floor][0], positions.get(1)[floor][1]);
         }
+        messagePane.display("第   " + floor + "   层");
     }
 
 }

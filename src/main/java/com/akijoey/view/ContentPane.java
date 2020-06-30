@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
-import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.util.ConfigUtil.maps;
 
 public class ContentPane extends JPanel {

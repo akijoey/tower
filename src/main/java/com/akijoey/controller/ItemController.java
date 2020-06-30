@@ -2,7 +2,7 @@ package com.akijoey.controller;
 
 import com.akijoey.bean.Item;
 
-import static com.akijoey.controller.PlayerController.player;
+import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.view.ContentPane.messagePane;
 
 public class ItemController {
