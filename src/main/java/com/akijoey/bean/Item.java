@@ -1,6 +1,6 @@
 package com.akijoey.bean;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Item {
 
@@ -47,7 +47,7 @@ public class Item {
     private boolean diamondShield;  // 钻石盾
     private boolean holyShield;     // 神圣盾
 
-    public Item(HashMap<String, Object> map) {
+    public Item(Map map) {
         redGem = (Integer)map.get("redGem");
         blueGem = (Integer)map.get("blueGem");
         orangeGem = (Integer)map.get("orangeGem");

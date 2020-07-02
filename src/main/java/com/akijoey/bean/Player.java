@@ -1,6 +1,6 @@
 package com.akijoey.bean;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Player extends Block {
 
@@ -18,14 +18,14 @@ public class Player extends Block {
 
     private Item item;
 
-    public Player(HashMap<String, Object> map) {
+    public Player(Map map) {
         level = (Integer)map.get("level");
         health = (Integer)map.get("health");
         attack = (Integer)map.get("attack");
         defend = (Integer)map.get("defend");
         gold = (Integer)map.get("gold");
         experience = (Integer)map.get("experience");
-        item = new Item((HashMap<String, Object>)map.get("item"));
+        item = new Item((Map)map.get("item"));
         setX((Integer)map.get("x"));
         setY((Integer)map.get("y"));
         direction = (String)map.get("direction");
