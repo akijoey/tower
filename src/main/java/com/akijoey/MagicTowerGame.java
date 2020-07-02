@@ -7,11 +7,9 @@ import com.akijoey.view.MenuPane;
 import javax.swing.*;
 import java.awt.event.*;
 
-import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.controller.PlayerController.turn;
-import static com.akijoey.util.ConfigUtil.saveArchive;
-import static com.akijoey.util.ConfigUtil.loadArchive;
 
+import static com.akijoey.util.ConfigUtil.*;
 import static com.akijoey.view.ContentPane.*;
 import static java.awt.event.KeyEvent.*;
 
@@ -38,7 +36,7 @@ public class MagicTowerGame {
 
     public static void start() {
 //        AudioUtil.playBackgroundMusic();
-        display(frame = new JFrame("Magic Tower v1.12"){{
+        display(frame = new JFrame("Magic Tower"){{
             setContentPane(new ContentPane());
             addKeyListener(new KeyAdapter() {
                 @Override
@@ -74,6 +72,14 @@ public class MagicTowerGame {
                             loadArchive();
                             getContentPane().repaint();
                             messagePane.display("读档成功");
+                            break;
+                        case VK_R:
+                            loadDefault();
+                            getContentPane().repaint();
+                            break;
+                        case VK_Q:
+                            dispose();
+                            System.exit(0);
                             break;
                     }
                 }

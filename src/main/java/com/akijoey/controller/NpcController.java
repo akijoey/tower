@@ -23,16 +23,33 @@ public class NpcController {
     }
 
     public static void talk(int id) {
-        if (id == 1230) {   // 0层 仙子 第一次对话
+        Item item = player.getItem();
+        if (id == 1213) {   // 16层 老人
+            maps.get(16)[4][4] = 1210;
+            item.setPlume(true);
+            messagePane.display("得到 飞羽");
+            maps.get(0)[8][4] = 1233;
+        } else if (id == 1231) {   // 0层 仙子 第一次对话
             maps.get(0)[8][5] = 1000;
             maps.get(0)[8][4] = 1230;
-            Item item = player.getItem();
             item.setYellowKey(item.getYellowKey() + 1);
             item.setBlueKey(item.getBlueKey() + 1);
             item.setRedKey(item.getRedKey() + 1);
-        } else if (id == 1241) {
+        } else if (id == 1232) {    // 0层 仙子 获得十字架后
+            maps.get(0)[8][4] = 1230;
+            player.setLevel(player.getLevel() + 20);
+            player.setHealth(player.getHealth() + 20000);
+            player.setAttack(player.getAttack() + 140);
+            player.setDefend(player.getDefend() + 140);
+        } else if (id == 1233) {    // 0层 仙子 获得飞羽后
+            maps.get(0)[8][4] = 1230;
+        } else if (id == 1234) {    // 22层 仙子
+            maps.get(22)[2][6] = 1230;
+        } else if (id == 1241) {    // 4层 小偷
             maps.get(4)[0][5] = 1240;
             maps.get(2)[6][1] = 1000;
+        } else if (id == 1251) {    // 18层 公主
+            maps.get(18)[4][5] = 1250;
         }
     }
 

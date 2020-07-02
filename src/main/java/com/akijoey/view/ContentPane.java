@@ -54,7 +54,7 @@ public class ContentPane extends JPanel {
         Graphics2D g2 = (Graphics2D)g;
 
         // draw background
-        g2.drawImage(ImageUtil.readBackground("content"), 0, 0, null);
+        g2.drawImage(ImageUtil.content, 0, 0, null);
 
         // draw map
         for (int x = 0;x < 11;x++) {
@@ -87,8 +87,14 @@ public class ContentPane extends JPanel {
         if (floor == 31 || floor == 32) {
             floor = 23;
         }
-        g2.drawString(floor + "", 200, 750);
+        g2.drawString(floor + "", 200, 752);
 
+        // draw tip
+        g2.setFont(new Font("微软雅黑", Font.BOLD, 22));
+        g2.drawString("[S]保存游戏", 85, 840);
+        g2.drawString("[A]读取存档", 85, 880);
+        g2.drawString("[R]重新开始", 215, 840);
+        g2.drawString("[Q]退出游戏", 215, 880);
     }
 
 }

@@ -28,8 +28,8 @@ public class Item {
     private boolean pickaxe;    // 神圣的镐子: 可以破坏隐藏墙壁
 
     private boolean plume;      // 飞羽
-    private boolean firePlume;  // 火飞羽
-    private boolean icePlume;   // 冰飞羽
+    private boolean firePlume;  // 火之飞羽
+    private boolean icePlume;   // 冰之飞羽
 
     private boolean flameWand;      // 火焰杖
     private boolean frozenWand;     // 冰冻杖

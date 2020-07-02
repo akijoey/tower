@@ -18,9 +18,7 @@ public class ConfigUtil {
     public static final String path = Thread.currentThread().getContextClassLoader().getResource("config/").getPath();
 
     static {
-        Map archive = readConfig("default");
-        player = new Player((Map)archive.get("player"));
-        maps = parseListArray((List)archive.get("map"));
+        loadDefault();
         Map constant = readConfig("constant");
         positions = parseListArray((List)constant.get("position"));
         monsters = parseIntegerMap((Map)constant.get("monster"));
@@ -79,16 +77,23 @@ public class ConfigUtil {
     }
 
     public static void saveArchive() {
-        saveCloud();
         saveLocal();
+        saveCloud();
     }
 
     public static void loadArchive() {
         try {
             loadCloud();
         } catch (Exception e) {
+            e.printStackTrace();
             loadLocal();
         }
+    }
+
+    public static void loadDefault() {
+        Map archive = readConfig("default");
+        player = new Player((Map)archive.get("player"));
+        maps = parseListArray((List)archive.get("map"));
     }
 
     public static boolean hasLocal() {

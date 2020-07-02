@@ -2,6 +2,7 @@ package com.akijoey.controller;
 
 import com.akijoey.bean.Item;
 
+import static com.akijoey.util.ConfigUtil.maps;
 import static com.akijoey.util.ConfigUtil.player;
 import static com.akijoey.view.ContentPane.messagePane;
 
@@ -40,10 +41,20 @@ public class ItemController {
             messagePane.display("得到 神圣的水壶: 生命值翻倍");
         } else if (id == 1143) {
             item.setCross(true);
+            maps.get(0)[8][4] = 1232;
             messagePane.display("得到 仙女的十字架");
         } else if (id == 1144) {
             item.setBadge(true);
             messagePane.display("得到 神圣的徽章: 按 L 可查看怪物信息");
+        } else if (id == 1145) {
+            item.setPlume(true);
+            messagePane.display("得到 飞羽");
+        } else if (id == 1146) {
+            item.setFirePlume(true);
+            messagePane.display("得到 火之飞羽");
+        } else if (id == 1147) {
+            item.setIcePlume(true);
+            messagePane.display("得到 冰之飞羽");
         } else if (id == 1148) {
             item.setFlameWand(true);
             messagePane.display("得到 火焰杖");
@@ -61,8 +72,8 @@ public class ItemController {
         if (id == 1130) {
             item.setKeyPack(item.getKeyPack() + 1);
             item.setYellowKey(item.getYellowKey() + 1);
-            item.setBlueBottle(item.getBlueKey() + 1);
-            item.setBlueBottle(item.getRedKey() + 1);
+            item.setBlueKey(item.getBlueKey() + 1);
+            item.setRedKey(item.getRedKey() + 1);
             messagePane.display("得到一个 钥匙袋 各钥匙加 1 ！");
         } else if (id == 1131) {
             item.setGoldPack(item.getGoldPack() + 1);

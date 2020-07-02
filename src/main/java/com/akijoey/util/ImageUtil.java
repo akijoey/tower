@@ -1,7 +1,5 @@
 package com.akijoey.util;
 
-import com.akijoey.MagicTowerGame;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
