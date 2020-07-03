@@ -2,9 +2,8 @@ package com.akijoey.util;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.HashMap;
 
 public class ImageUtil {
@@ -19,20 +18,19 @@ public class ImageUtil {
     static {
         BufferedImage image;
         for (int i = 1000;i < 2000;i++) {
-            if ((image = readImage("/keyframe/from/" + i)) != null) {
+            if ((image = readImage("keyframe/from/" + i)) != null) {
                 from.put(i, image);
             }
-            if ((image = readImage("/keyframe/to/" + i)) != null) {
+            if ((image = readImage("keyframe/to/" + i)) != null) {
                 to.put(i, image);
             }
         }
     }
 
     public static BufferedImage readImage(String relative) {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("image/");
-        String absolute = url.getPath() + relative + ".png";
-        File image = new File(absolute);
-        if (image.exists()) {
+        String path = "image/" + relative + ".png";
+        InputStream image = ImageUtil.class.getClassLoader().getResourceAsStream(path);
+        if (image != null) {
             try {
                 return ImageIO.read(image);
             } catch (IOException e) {
@@ -43,11 +41,11 @@ public class ImageUtil {
     }
 
     public static BufferedImage readBackground(String name) {
-        return readImage("/background/" + name);
+        return readImage("background/" + name);
     }
 
     public static BufferedImage readPlayer(String name) {
-        return readImage("/player/" + name);
+        return readImage("player/" + name);
     }
 
 }

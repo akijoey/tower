@@ -1,6 +1,5 @@
 package com.akijoey.controller;
 
-import com.akijoey.bean.Player;
 import com.akijoey.util.ImageUtil;
 
 import java.awt.image.BufferedImage;

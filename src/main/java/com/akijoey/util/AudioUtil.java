@@ -1,14 +1,15 @@
 package com.akijoey.util;
 
 import javax.sound.sampled.*;
-import java.net.URL;
+import java.io.InputStream;
 
 public class AudioUtil {
 
     public static void playBackgroundMusic() {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("audio/background.au");
+        String path = "audio/background.au";
+        InputStream audio = AudioUtil.class.getClassLoader().getResourceAsStream(path);
         try {
-            AudioInputStream stream = AudioSystem.getAudioInputStream(url);
+            AudioInputStream stream = AudioSystem.getAudioInputStream(audio);
             Clip clip = AudioSystem.getClip();
             clip.open(stream);
             clip.start();
