@@ -107,7 +107,6 @@ public class DialogPane extends JLayeredPane {
         setVisible(true);
         requestFocus();
 
-        DialogPane that = this;
         addKeyListener(new KeyAdapter() {
             private int select = 0;
             @Override

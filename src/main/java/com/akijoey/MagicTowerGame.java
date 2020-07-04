@@ -35,7 +35,7 @@ public class MagicTowerGame {
     }
 
     public static void start() {
-//        AudioUtil.playBackgroundMusic();
+        AudioUtil.playBackgroundMusic();
         display(frame = new JFrame("Magic Tower"){{
             setContentPane(new ContentPane());
             addKeyListener(new KeyAdapter() {
